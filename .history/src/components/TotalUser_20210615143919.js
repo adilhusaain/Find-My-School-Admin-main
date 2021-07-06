@@ -6,28 +6,29 @@ import Title from './Title';
 
 
 
-export default function TotalInstitutes() {
-  const [inst, setInst] = useState()
-  async   function countCust(){
+export default function TotalUser() {
+  const [user, setUser] = useState()
+
+  async   function countUser(){
       let i=0
-         const custRef = await firebase.firestore().collection("institutes").get()
-         custRef.docs.forEach((element) => {
+         const userRef = await firebase.firestore().collection("users").get()
+         userRef.docs.forEach((element) => {
              i++
          });
-         setInst(i)
+         setUser(i)
      }
      useEffect(() => {
-         countCust()
+         countUser()
      }, [])
 
   return (
     <React.Fragment>
-      <Title>Total Institutes</Title>
+      <Title>Total Users</Title>
       <Typography  component="h1" variant="h2">
-       {inst}
+       {user}
       </Typography> 
       <Typography variant="h6" color="textSecondary">
-        25 April, 2021
+      15 June, 2021
       </Typography>
     
     </React.Fragment>

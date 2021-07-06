@@ -1,32 +1,33 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react'
+import  firebase from "firebase" 
+import "firebase/firestore"
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
 
 
 
-export default function TotalAdmin() {
-  const [cust, setCust] = useState()
+export default function TotalInstitutes() {
+  const [inst, setInst] = useState()
   async   function countCust(){
       let i=0
-         const custRef = await firebase.firestore().collection("admins").get()
+         const custRef = await firebase.firestore().collection("test").get()
          custRef.docs.forEach((element) => {
              i++
          });
-         setCust(i)
+         setInst(i)
      }
      useEffect(() => {
          countCust()
      }, [])
 
-
   return (
     <React.Fragment>
-      <Title>Total Admins</Title>
+      <Title>Total Institutes</Title>
       <Typography  component="h1" variant="h2">
-        {cust}
+       {inst}
       </Typography> 
       <Typography variant="h6" color="textSecondary">
-        25 April, 2021
+      15 June, 2021
       </Typography>
     
     </React.Fragment>

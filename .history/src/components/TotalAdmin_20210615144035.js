@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
-
+import  firebase from "firebase" 
+import "firebase/firestore"
 
 
 export default function TotalAdmin() {
@@ -18,7 +19,7 @@ export default function TotalAdmin() {
          countCust()
      }, [])
 
-     
+
   return (
     <React.Fragment>
       <Title>Total Admins</Title>
@@ -26,7 +27,7 @@ export default function TotalAdmin() {
         {cust}
       </Typography> 
       <Typography variant="h6" color="textSecondary">
-        25 April, 2021
+        15 June, 2021
       </Typography>
     
     </React.Fragment>
