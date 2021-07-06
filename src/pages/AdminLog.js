@@ -46,8 +46,8 @@ export default function AdminLog() {
         {vote && <TableBody>
           {vote.map((row) => (
                      <TableRow key={row.id}>
- <TableCell>{row.data.instituteName}</TableCell>
- <TableCell>{row.data.catagory}</TableCell>
+ <TableCell>{row.data.name}</TableCell>
+ <TableCell>{row.data.category}</TableCell>
  <TableCell>{row.data.rating}</TableCell>
  <TableCell>{row.data.city}</TableCell>
  <TableCell>{row.data.province}</TableCell>

@@ -8,7 +8,7 @@ import firebase from 'firebase';
 import 'firebase/firestore'
 import {cities} from "../components/CitiesOfPakistan"
 import "firebase/storage"
-import { Add } from '@material-ui/icons';
+import { Add, Photo } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +58,11 @@ export default function AddAdmin() {
       alert ('Done!')
     
   }
+   // Create a reference to the hidden file input element
+   const hiddenFileInput = React.useRef(null);
+  const handleClick = event => {
+    hiddenFileInput.current.click();
+  };
 
 
 
@@ -87,6 +92,7 @@ export default function AddAdmin() {
         curriculam:"",
       }}
       onSubmit={(values) => {handleUpload(values)}}>
+        
 
        {({ submitForm, isSubmitting }) => ( 
     
@@ -272,14 +278,37 @@ export default function AddAdmin() {
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
-            <input
+              <Button
+               onClick = {handleClick}
+              style={{marginTop:10}}
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              startIcon= { <Photo /> }
+              disabled= {loading}>
+                Choose School Logo
+                <input
+        type="file"
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        style={{display: 'none'}} 
+      />
+              {/* <input
+            // variant = "outlined"
+            // style={{
+            //   borderBlock: 10,
+            //   borderColor: 'primary'
+            // }}
               accept="image/*"
               className={classes.input}
               id="contained-button-file"
               multiple
               type="file"
               onChange={handleChange}
-            />
+            /> */}
+              </Button>
+           
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
@@ -408,6 +437,7 @@ export default function AddAdmin() {
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
             <Button
+           
           style={{marginTop:10}}
             type="submit"
             variant="contained"
