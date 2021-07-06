@@ -56,7 +56,6 @@ export default function RequestDetails() {
       feedetails: value.data().feedetails,
       lowerfeerange: value.data().lowerfeerange,
       upperfeerange: value.data().upperfeerange,
-      searchIndex: value.data().searchIndex,
     };
 
     firebase.firestore().collection("test").doc(id).set(docData).then(() => {
@@ -64,7 +63,6 @@ export default function RequestDetails() {
   });
 
   });
-  await deleteInstitute(id);
 //   let copyTo = firebase.firestore().collection('test').doc(id);
 
 

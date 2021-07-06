@@ -34,70 +34,14 @@ export default function RequestDetails() {
  }
 
  async function approveInstitute(id) {
-  await firebase.firestore().collection('requests').doc(id).get().then((value) => {
-
-    var docData = {
-      name : value.data().name,
-      address: value.data().address,
-      city: value.data().city,
-      province: value.data().province,
-      contact: value.data().contact,
-      image: value.data().image,
-      bg: value.data().bg,
-      rating: value.data().rating,
-      openingtiming: value.data().openingtiming,
-      normaltiming: value.data().normaltiming,
-      fridaytiming: value.data().fridaytiming,
-      category: value.data().category,
-      sector: value.data().sector,
-      webUrl: value.data().webUrl,
-      location: value.data().location,
-      curriculum: value.data().curriculum,
-      feedetails: value.data().feedetails,
-      lowerfeerange: value.data().lowerfeerange,
-      upperfeerange: value.data().upperfeerange,
-      searchIndex: value.data().searchIndex,
-    };
-
-    firebase.firestore().collection("test").doc(id).set(docData).then(() => {
-      console.log("Document successfully written!");
-  });
-
-  });
-  await deleteInstitute(id);
-//   let copyTo = firebase.firestore().collection('test').doc(id);
-
-
+  let copyFrom = firebase.firestore().collection('requests').doc(id);
+  let copyTo = firebase.firestore().collection('test').doc(id);
   
-//   reqData.get().then((value) => {
-//     var docData = {
-//       name : value.data().name,
-//       address: value.data().address,
-//       city: value.data().city,
-//       province: value.data().province,
-//       contact: value.data().contact,
-//       image: value.data().image,
-//       bg: value.data().bg,
-//       rating: value.data().rating,
-//       openingtiming: value.data().openingtiming,
-//       normaltiming: value.data().normaltiming,
-//       fridaytiming: value.data().fridaytiming,
-//       category: value.data().category,
-//       sector: value.data().sector,
-//       webUrl: value.data().webUrl,
-//       location: value.data().location,
-//       curriculum: value.data().curriculum,
-//       feedetails: value.data().feedetails,
-//       lowerfeerange: value.data().lowerfeerange,
-//       upperfeerange: value.data().upperfeerange,
-      
-//   };
-//   firebase.firestore().collection("test").doc(id).set(docData).then(() => {
-//     console.log("Document successfully written!");
-// });
-//   });
+  copyFrom.get().then((value) => {
+    copyTo.set(Map.fromEntries(value.data().entries))
+  });
 
-  //await deleteInstitute(id);
+  deleteInstitute(id);
     // const requests = await firestore().collection("requests").get();
     // requests.forEach(async (doc)=> {
     //     await firestore().collection(uid).doc(doc.get('barcode')).set(doc.data());
@@ -163,7 +107,7 @@ export default function RequestDetails() {
  <TableCell>{row.data.curriculum}</TableCell>
  <TableCell> 
      <Button  color="secondary" onClick={()=> {deleteInstitute(row.id)}} >Decline</Button> 
-     <Button  color="primary" onClick= {()=> {approveInstitute(row.id)}}>Approve</Button> 
+     <Button  color="primary">Approve</Button> 
  </TableCell>
 
 
