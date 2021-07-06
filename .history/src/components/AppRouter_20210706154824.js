@@ -7,8 +7,6 @@ import AddInstitute from '../pages/AddInstitute'
 import Layout from './Layout';
 import PushNotification from "../pages/PushNotification"
 import InstituteDetails from "../pages/InstituteDetails"
-import InstituteRequests from "../pages/InstituteRequests"
-import RequestDetails from "../pages/RequestDetails"
 
 
 
@@ -36,10 +34,8 @@ function AppRouter(props) {
            </Route>
            <Route path="/userlog">
              <UserLog />
-             </Route>
-           <Route path="/requests">
+             <Route path="/requests">
              <InstituteRequests/>
-           
            </Route>
            <Route path="/addinstitute">
              <AddInstitute />
@@ -50,10 +46,6 @@ function AppRouter(props) {
            <Route path="/institutedetails">
              <InstituteDetails />
            </Route>
-           <Route path="/requestsdetails">
-             <RequestDetails />
-           </Route>
-           
          </Switch>
          </Layout>
        

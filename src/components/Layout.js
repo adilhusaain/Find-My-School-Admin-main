@@ -17,6 +17,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import SendIcon from '@material-ui/icons/Send';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 //import {useAuth} from '../context/AuthContext'
 //import Alert from '@material-ui/lab/Alert';
 
@@ -103,6 +104,12 @@ const [darkMode, setdarkMode] = useState(false);
       text: 'User Details', 
       icon: <People color="primary" />, 
       path: "/userlog"
+    
+    },
+    { 
+      text: 'Institute Requests', 
+      icon: <AccountBalanceIcon color="primary" />, 
+      path: "/requests"
     
     },
     { 

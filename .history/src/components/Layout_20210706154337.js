@@ -95,14 +95,20 @@ const [darkMode, setdarkMode] = useState(false);
         
       },
     { 
-      text: 'Admin Log', 
+      text: 'All Institutes', 
       icon: <Person color="primary" />, 
       path: "/adminlog"
     },
     { 
-      text: 'User Log', 
+      text: 'User Details', 
       icon: <People color="primary" />, 
       path: "/userlog"
+    
+    },
+    { 
+      text: 'Institute Requests', 
+      icon: <People color="primary" />, 
+      path: "/requests"
     
     },
     { 

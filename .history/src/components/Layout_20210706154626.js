@@ -15,6 +15,9 @@ import { Paper, Switch } from '@material-ui/core';
 import { useHistory } from 'react-router'
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import SendIcon from '@material-ui/icons/Send';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 //import {useAuth} from '../context/AuthContext'
 //import Alert from '@material-ui/lab/Alert';
 
@@ -93,14 +96,20 @@ const [darkMode, setdarkMode] = useState(false);
         
       },
     { 
-      text: 'Admin Log', 
+      text: 'All Institutes', 
       icon: <Person color="primary" />, 
       path: "/adminlog"
     },
     { 
-      text: 'User Log', 
+      text: 'User Details', 
       icon: <People color="primary" />, 
       path: "/userlog"
+    
+    },
+    { 
+      text: 'Institute Requests', 
+      icon: <People color="primary" />, 
+      path: "/requests"
     
     },
     { 
@@ -144,7 +153,12 @@ const [darkMode, setdarkMode] = useState(false);
            Find My School Administration Portal
           </Typography>
           <Switch checked={darkMode} onChange= {() => setdarkMode(!darkMode)} ></Switch>
-           <NotificationsActiveIcon className={classes.title} />
+
+          <IconButton color="inherit">
+            <Badge badgeContent={3} color="secondary">
+              <NotificationsActiveIcon  />
+            </Badge>
+          </IconButton>
           <Button color= "inherit"  onClick={()=>{window.localStorage.removeItem("users"); window.location.reload(); return false}} startIcon= { <ExitToApp/> }>Log Out</Button>
         </Toolbar>
       </AppBar>

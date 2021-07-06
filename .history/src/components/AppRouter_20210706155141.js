@@ -34,6 +34,10 @@ function AppRouter(props) {
            </Route>
            <Route path="/userlog">
              <UserLog />
+             </Route>
+           <Route path="/requests">
+             <InstituteRequests/>
+           
            </Route>
            <Route path="/addinstitute">
              <AddInstitute />

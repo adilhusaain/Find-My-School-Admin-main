@@ -8,7 +8,6 @@ import Layout from './Layout';
 import PushNotification from "../pages/PushNotification"
 import InstituteDetails from "../pages/InstituteDetails"
 import InstituteRequests from "../pages/InstituteRequests"
-import RequestDetails from "../pages/RequestDetails"
 
 
 
@@ -50,10 +49,6 @@ function AppRouter(props) {
            <Route path="/institutedetails">
              <InstituteDetails />
            </Route>
-           <Route path="/requestsdetails">
-             <RequestDetails />
-           </Route>
-           
          </Switch>
          </Layout>
        

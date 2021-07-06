@@ -6,7 +6,7 @@ import UserLog from '../pages/UserLog'
 import AddInstitute from '../pages/AddInstitute'
 import Layout from './Layout';
 import PushNotification from "../pages/PushNotification"
-
+import InstituteDetails from "../pages/InstituteDetails"
 
 
 
@@ -34,12 +34,19 @@ function AppRouter(props) {
            </Route>
            <Route path="/userlog">
              <UserLog />
+             </Route>
+           <Route path="/requests">
+             <InstituteRequests/>
+           
            </Route>
            <Route path="/addinstitute">
              <AddInstitute />
            </Route>
            <Route path="/pushnotification">
              <PushNotification />
+           </Route>
+           <Route path="/institutedetails">
+             <InstituteDetails />
            </Route>
          </Switch>
          </Layout>

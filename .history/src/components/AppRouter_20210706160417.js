@@ -50,7 +50,7 @@ function AppRouter(props) {
            <Route path="/institutedetails">
              <InstituteDetails />
            </Route>
-           <Route path="/requestsdetails">
+           <Route path="/requestdetails">
              <RequestDetails />
            </Route>
            
