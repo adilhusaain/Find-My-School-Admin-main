@@ -29,7 +29,7 @@ export default function RequestDetails() {
   }, [inst])
 
   async function deleteInstitute(id){
-    firebase.firestore().collection('requests').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))
+    firebase.firestore().collection('test').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))
    
  }
   
@@ -75,14 +75,14 @@ export default function RequestDetails() {
  <TableCell>{row.data.location}</TableCell>
  <TableCell>{row.data.image}</TableCell>
  <TableCell>{row.data.bg}</TableCell>
- <TableCell>{row.data.lowerfeerange}</TableCell>
- <TableCell>{row.data.upperfeerange}</TableCell>
- <TableCell>{row.data.feedetails}</TableCell>
- <TableCell>{row.data.openingtiming}</TableCell>
- <TableCell>{row.data.normaltiming}</TableCell>
- <TableCell>{row.data.fridaytiming}</TableCell>
+ <TableCell>{row.data.lowerFeeRange}</TableCell>
+ <TableCell>{row.data.upperFeeRange}</TableCell>
+ <TableCell>{row.data.feeDetails}</TableCell>
+ <TableCell>{row.data.openingTiming}</TableCell>
+ <TableCell>{row.data.closingTiming}</TableCell>
+ <TableCell>{row.data.fridayTiming}</TableCell>
  <TableCell>{row.data.webUrl}</TableCell>
- <TableCell>{row.data.curriculum}</TableCell>
+ <TableCell>{row.data.curriculam}</TableCell>
  <TableCell> 
      <Button  color="secondary" onClick={()=> {deleteInstitute(row.id)}} >Decline</Button> 
      <Button  color="primary">Approve</Button> 

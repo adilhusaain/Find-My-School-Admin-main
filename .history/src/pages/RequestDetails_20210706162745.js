@@ -29,7 +29,7 @@ export default function RequestDetails() {
   }, [inst])
 
   async function deleteInstitute(id){
-    firebase.firestore().collection('requests').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))
+    firebase.firestore().collection('test').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))
    
  }
   
