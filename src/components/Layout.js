@@ -64,7 +64,8 @@ const [darkMode, setdarkMode] = useState(false);
     palette: {
       type: darkMode ? "dark" : "light",
       primary: {
-        main: '#90caf9' ,
+        // main: '#90caf9' ,
+        main: '#287EFA' ,
       }
     },
    

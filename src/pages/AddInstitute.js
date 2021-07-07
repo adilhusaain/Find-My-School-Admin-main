@@ -9,8 +9,21 @@ import 'firebase/firestore'
 import {cities} from "../components/CitiesOfPakistan"
 import "firebase/storage"
 import { Add, Photo } from '@material-ui/icons';
+// import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+// import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+// import { red, blue } from 'material-ui-colors'
+
+// const redTheme = createMuiTheme({ palette: { primary: red } })
+// const blueTheme = createMuiTheme({ palette: { primary: blue } })
 
 
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: 'purple',
+//     secondary: 'green',
+//     error: 'red',
+//   },
+// });
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1),
@@ -52,6 +65,15 @@ export default function AddAdmin() {
   }
 
   async function Register(value){
+
+    // await {
+    //   List<String> splitList = value.name.split(" ");
+    //   List<String> indexList = [];
+    //   for (int i = 0; i < splitList.length; i++) {
+    //     for (int y = 1; y < splitList[i].length + 1; y++) {
+    //       indexList.add(splitList[i].substring(0, y).toLowerCase());
+    //     }
+    //   }
     
     setLoading(true)
       await firebase.firestore().collection('test').add(value)
@@ -278,18 +300,29 @@ export default function AddAdmin() {
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
+                
               <Button
                onClick = {handleClick}
-              style={{marginTop:10}}
-              type="submit"
+              // style={{
+              //   backgroundColor: 'green',
+              //   marginTop:10,
+              //   color: '#fff'
+               
+              
+              
+              
+              // }}
+              
               variant="contained"
               color="primary"
               fullWidth
               startIcon= { <Photo /> }
-              disabled= {loading}>
+              >
                 Choose School Logo
                 <input
         type="file"
+        accept="image/*"
+        
         ref={hiddenFileInput}
         onChange={handleChange}
         style={{display: 'none'}} 
@@ -308,18 +341,38 @@ export default function AddAdmin() {
               onChange={handleChange}
             /> */}
               </Button>
+            
            
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
-              <Field
-                component={TextField}
-                variant="outlined"
-                disabled={false}
-                fullWidth
-                name="bg"
-                label="Background Image"
-              />
+            <Button
+               onClick = {handleClick}
+              style={{marginTop:10}}
+              variant="contained"
+              color="primary"
+              fullWidth
+              startIcon= { <Photo /> }
+              disabled= {loading}>
+                Choose School Image
+                <input
+        type="file"
+        accept="image/*"
+        className={classes.input}
+              id="contained-button-file"
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        style={{display: 'none'}} 
+      />
+              {/* <input
+              accept="image/*"
+              className={classes.input}
+              id="contained-button-file"
+              multiple
+              type="file"
+              onChange={handleChange}
+            /> */}
+              </Button>
             </Grid>
 
             <Grid item xs={1}></Grid>

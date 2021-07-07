@@ -85,7 +85,9 @@ export default function AdminLog() {
  <TableCell>{row.data.curriculam}</TableCell>
  <TableCell> 
      <Button  color="secondary" onClick={()=> {deleteInstitute(row.id)}} >Delete</Button> 
-     <Button  color="primary">Edit</Button> 
+     <Button 
+     
+     color="primary">Edit</Button> 
  </TableCell>
 
 
