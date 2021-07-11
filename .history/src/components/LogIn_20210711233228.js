@@ -14,8 +14,6 @@ import AuthContext from '../context'
 import Alert from '@material-ui/lab/Alert';
 import CloseIcon from '@material-ui/icons/Close';
 import Collapse from '@material-ui/core/Collapse';
-import Grid from '@material-ui/core/Grid';
-import {IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,7 +50,7 @@ export default function Login() {
         localStorage.setItem('users',JSON.stringify(doc.data(), null, 4))
       }
       else {
-        setSuccess ("Invalid Email or Password. Try Again!!!")
+        setSuccess ("Your Message has been sent Successfully!")
 
       }
     });
@@ -113,7 +111,6 @@ export default function Login() {
               <Grid item xs={12}>
            {success && <Collapse in={open}>
              <Alert
-             severity="error"
             action={
               <IconButton
                 aria-label="close"

@@ -8,7 +8,6 @@ import TableRow from '@material-ui/core/TableRow';
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import {Button} from '@material-ui/core';
-import { LinkContainer } from 'react-router-bootstrap'
 
 
 function preventDefault(event) {
@@ -54,12 +53,7 @@ export default function AdminLog() {
  <TableCell>{row.data.province}</TableCell>
  <TableCell>{row.data.sector}</TableCell>
  <TableCell>
- <LinkContainer to={`/institutedetails`}>
-                      <Button className='btn-sm' color= "primary">
-                        Details
-                      </Button>
-                    </LinkContainer>
-     </TableCell>
+    <Button color="primary" href="/institutedetails"  >Details </Button> </TableCell>
            
             </TableRow>
           ))}

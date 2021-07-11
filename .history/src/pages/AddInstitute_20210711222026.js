@@ -12,7 +12,6 @@ import { Add, Photo } from "@material-ui/icons";
 import { LinkContainer } from 'react-router-bootstrap'
 import * as Yup from "yup";
 
-
 // import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 // import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 // import { red, blue } from 'material-ui-colors'
@@ -116,8 +115,8 @@ export default function AddAdmin() {
 
   const DisplayingErrorMessagesSchema = Yup.object().shape({
     instituteName: Yup.string()
-      .min(10, "Too Short!")
-      .max(50, "Too Long!")
+      .min(5, "Too Short!")
+      .max(15, "Too Long!")
       .required("Required"),
 
     curriculam: Yup.string()
@@ -125,13 +124,13 @@ export default function AddAdmin() {
       .required("Required"),
 
     address: Yup.string()
-      .min(10, "Too Short!")
-      .max(70, "Too Long!")
+      .min(5, "Too Short!")
+      .max(50, "Too Long!")
       .required("Required"),
 
     contact: Yup.string()
-      .min(10, "Phone Number should be 11 character Long")
-      .max(10, "Phone Number contains more characters")
+      .min(11, "Please Enter a Valid Phone Number")
+      .max(11, "Please Enter a Valid Phone Number")
       .required("Required"),
 
     webUrl: Yup.string()
@@ -312,7 +311,6 @@ export default function AddAdmin() {
               >
                 <MenuItem value="Public">Public</MenuItem>
                 <MenuItem value="Private">Private</MenuItem>
-                <MenuItem value="Private">Semi-Government</MenuItem>
               </Field>
             </Grid>
 
@@ -336,7 +334,6 @@ export default function AddAdmin() {
                 disabled={false}
                 fullWidth
                 name="contact"
-                type = "number"
               />
             </Grid>
 
@@ -363,7 +360,7 @@ export default function AddAdmin() {
                 // }}
 
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
               >
@@ -396,7 +393,7 @@ export default function AddAdmin() {
                 onClick={handleClick}
                 style={{ marginTop: 10 }}
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
                 disabled={loading}

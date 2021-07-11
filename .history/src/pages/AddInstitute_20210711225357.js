@@ -363,7 +363,7 @@ export default function AddAdmin() {
                 // }}
 
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
               >
@@ -396,7 +396,7 @@ export default function AddAdmin() {
                 onClick={handleClick}
                 style={{ marginTop: 10 }}
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
                 disabled={loading}

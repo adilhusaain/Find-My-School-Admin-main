@@ -53,7 +53,7 @@ export default function InstituteRequests() {
    <TableCell>{row.data.city}</TableCell>
    <TableCell>{row.data.province}</TableCell>
    <TableCell>{row.data.sector}</TableCell>
-   <TableCell> <LinkContainer to={`/requestsdetails`}>
+   <TableCell> <LinkContainer to={`//requestsdetails`}>
                       <Button className='btn-sm' color= "primary">
                         Details
                       </Button>

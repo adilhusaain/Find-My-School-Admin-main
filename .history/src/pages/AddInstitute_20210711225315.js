@@ -131,7 +131,7 @@ export default function AddAdmin() {
 
     contact: Yup.string()
       .min(10, "Phone Number should be 11 character Long")
-      .max(10, "Phone Number contains more characters")
+      .max(11, "Phone Number contains more characters")
       .required("Required"),
 
     webUrl: Yup.string()
@@ -363,7 +363,7 @@ export default function AddAdmin() {
                 // }}
 
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
               >
@@ -396,7 +396,7 @@ export default function AddAdmin() {
                 onClick={handleClick}
                 style={{ marginTop: 10 }}
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
                 disabled={loading}

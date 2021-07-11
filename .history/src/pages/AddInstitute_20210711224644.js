@@ -116,8 +116,8 @@ export default function AddAdmin() {
 
   const DisplayingErrorMessagesSchema = Yup.object().shape({
     instituteName: Yup.string()
-      .min(10, "Too Short!")
-      .max(50, "Too Long!")
+      .min(5, "Too Short!")
+      .max(15, "Too Long!")
       .required("Required"),
 
     curriculam: Yup.string()
@@ -125,13 +125,13 @@ export default function AddAdmin() {
       .required("Required"),
 
     address: Yup.string()
-      .min(10, "Too Short!")
-      .max(70, "Too Long!")
+      .min(5, "Too Short!")
+      .max(50, "Too Long!")
       .required("Required"),
 
     contact: Yup.string()
-      .min(10, "Phone Number should be 11 character Long")
-      .max(10, "Phone Number contains more characters")
+      .min(11, "Please Enter a Valid Phone Number")
+      .max(11, "Please Enter a Valid Phone Number")
       .required("Required"),
 
     webUrl: Yup.string()
@@ -336,7 +336,6 @@ export default function AddAdmin() {
                 disabled={false}
                 fullWidth
                 name="contact"
-                type = "number"
               />
             </Grid>
 
@@ -363,7 +362,7 @@ export default function AddAdmin() {
                 // }}
 
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
               >
@@ -396,7 +395,7 @@ export default function AddAdmin() {
                 onClick={handleClick}
                 style={{ marginTop: 10 }}
                 variant="contained"
-                color="inherit"
+                color="primary"
                 fullWidth
                 startIcon={<Photo />}
                 disabled={loading}

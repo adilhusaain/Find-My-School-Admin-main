@@ -55,7 +55,7 @@ export default function AdminLog() {
  <TableCell>{row.data.sector}</TableCell>
  <TableCell>
  <LinkContainer to={`/institutedetails`}>
-                      <Button className='btn-sm' color= "primary">
+                      <Button className='btn-sm' variant='dark'>
                         Details
                       </Button>
                     </LinkContainer>
