@@ -88,13 +88,12 @@ export default function AddAdmin() {
         }
       }
 
-      value.searchIndex == indexList;
-  }
 
-    setLoading(true);
+    
+  }
+  setLoading(true);
     await firebase.firestore().collection("test").add(value);
     alert("Done!");
-  }
   // Create a reference to the hidden file input element
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
@@ -192,7 +191,7 @@ export default function AddAdmin() {
         fridaytiming: "",
         webUrl: "",
         curriculum: "",
-        searchIndex: [],
+        searchIndex:[]
       }}
       validationSchema={DisplayingErrorMessagesSchema}
       onSubmit={(values) => {

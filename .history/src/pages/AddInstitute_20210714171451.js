@@ -88,7 +88,7 @@ export default function AddAdmin() {
         }
       }
 
-      value.searchIndex == indexList;
+      value.searchIndex = indexList;
   }
 
     setLoading(true);
@@ -192,7 +192,7 @@ export default function AddAdmin() {
         fridaytiming: "",
         webUrl: "",
         curriculum: "",
-        searchIndex: [],
+        searchIndex:[]
       }}
       validationSchema={DisplayingErrorMessagesSchema}
       onSubmit={(values) => {
