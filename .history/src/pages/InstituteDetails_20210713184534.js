@@ -8,7 +8,6 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import {Button} from '@material-ui/core';
 import { LinkContainer } from 'react-router-bootstrap'
-import { Link } from 'react-router-dom';
 
 
 function preventDefault(event) {
@@ -27,7 +26,7 @@ export default function InstituteDetails() {
 
   useEffect(() => {
      myInstitute();
-  }, []) //[inst]
+  }, [inst])
 
   async function deleteInstitute(id){
     firebase.firestore().collection('test').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))
@@ -51,8 +50,8 @@ export default function InstituteDetails() {
       <Table size="small" >
         <TableHead>
           <TableRow>
-          <TableCell>Name</TableCell>
-            <TableCell>Category</TableCell>
+          <TableCell>Institute Name</TableCell>
+            <TableCell>Catagory</TableCell>
             <TableCell>Rating</TableCell>
             <TableCell>City</TableCell>
             <TableCell>Province</TableCell>
@@ -66,10 +65,10 @@ export default function InstituteDetails() {
             <TableCell>Upper Fee Range</TableCell>
             <TableCell>Fee Details</TableCell>
             <TableCell>Opening Timings</TableCell>
-            <TableCell>Normal Timings</TableCell>
+            <TableCell>Closing Timings</TableCell>
             <TableCell>Friday Timings</TableCell>
             <TableCell>Web URL</TableCell>
-            <TableCell>Curriculum</TableCell>
+            <TableCell>Curriculam</TableCell>
             <TableCell>Action</TableCell>
         
           </TableRow>
@@ -77,33 +76,34 @@ export default function InstituteDetails() {
         {inst && <TableBody>
           {inst.map((row) => (
                      <TableRow key={row.id}>
- <TableCell>{row.data.name}</TableCell>
- <TableCell>{row.data.category}</TableCell>
+ <TableCell>{row.data.instituteName}</TableCell>
+ <TableCell>{row.data.catagory}</TableCell>
  <TableCell>{row.data.rating}</TableCell>
  <TableCell>{row.data.city}</TableCell>
  <TableCell>{row.data.province}</TableCell>
  <TableCell>{row.data.sector}</TableCell>
  <TableCell>{row.data.address}</TableCell>
- <TableCell>{row.data.contactnumber}</TableCell>
+ <TableCell>{row.data.contact}</TableCell>
  <TableCell>{row.data.location}</TableCell>
  <TableCell>{row.data.image}</TableCell>
  <TableCell>{row.data.bg}</TableCell>
- <TableCell>{row.data.lowerfeerange}</TableCell>
- <TableCell>{row.data.upperfeerange}</TableCell>
- <TableCell>{row.data.feedetails}</TableCell>
- <TableCell>{row.data.openingtiming}</TableCell>
- <TableCell>{row.data.normaltiming}</TableCell>
- <TableCell>{row.data.fridaytiming}</TableCell>
+ <TableCell>{row.data.lowerFeeRange}</TableCell>
+ <TableCell>{row.data.upperFeeRange}</TableCell>
+ <TableCell>{row.data.feeDetails}</TableCell>
+ <TableCell>{row.data.openingTiming}</TableCell>
+ <TableCell>{row.data.closingTiming}</TableCell>
+ <TableCell>{row.data.fridayTiming}</TableCell>
  <TableCell>{row.data.webUrl}</TableCell>
- <TableCell>{row.data.curriculum}</TableCell>
+ <TableCell>{row.data.curriculam}</TableCell>
  <TableCell> 
      <Button  color="secondary" onClick={()=> {deleteInstitute(row.id)}} >Delete</Button> 
-     <LinkContainer to={`/UpdateInstitute/${row.id}`}>
-     <Button className='btn-sm' color= "primary">
+     <LinkContainer to={`/updateinstitute/${row.id}`}>
+                      <Button className='btn-sm' color= "primary"
+                      
+                      >
                         Update
                       </Button>
                     </LinkContainer> 
-
  </TableCell>
 
 

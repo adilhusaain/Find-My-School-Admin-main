@@ -42,9 +42,6 @@ export default function AddAdmin() {
     if (file == null) {
       alert("Please Select an Image");
       return;
-    } else  if (file2 == null) {
-      alert("Please Select an Image2");
-      return;
     }
     
     const uploadTask = await firebase
@@ -58,24 +55,30 @@ export default function AddAdmin() {
       .child(file.name)
       .getDownloadURL();
     values.image = urr;
-    //
-    const uploadTask2 = await firebase
-      .storage()
-      .ref(`/images/${file2.name}`)
-      .put(file2);
-
-    const urrr = await firebase
-      .storage()
-      .ref("images")
-      .child(file2.name)
-      .getDownloadURL();
-    values.image = urrr;
-    //
 
     Register(values);
   }
 
- 
+  async function handleUpload2(values) {
+    if (file2 == null) {
+      alert("Please Select an Image2");
+      return;
+    }
+    
+    const uploadTask = await firebase
+      .storage()
+      .ref(`/images/${file2.name}`)
+      .put(file2);
+
+    const urr = await firebase
+      .storage()
+      .ref("images")
+      .child(file2.name)
+      .getDownloadURL();
+    values.image = urr;
+
+    Register(values);
+  }
 
   async function Register(value) {
 
@@ -183,7 +186,7 @@ export default function AddAdmin() {
       validationSchema={DisplayingErrorMessagesSchema}
       onSubmit={(values) => {
         handleUpload(values);
-        
+        handleUpload2(values);
       }}
     >
       {({ errors, touched }) => (
@@ -361,7 +364,7 @@ export default function AddAdmin() {
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
               <Button
-                onClick={handleClick2}
+                onClick={handleClick}
 
                 variant="contained"
                 color="inherit"
@@ -372,7 +375,7 @@ export default function AddAdmin() {
                 <input
                   type="file"
                   accept="image/*"
-                  ref={hiddenFileInput2}
+                  ref={hiddenFileInput}
                   onChange={handleChange2}
                   style={{ display: "none" }}
                 />

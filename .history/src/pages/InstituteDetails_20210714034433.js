@@ -27,7 +27,7 @@ export default function InstituteDetails() {
 
   useEffect(() => {
      myInstitute();
-  }, []) //[inst]
+  }, [inst])
 
   async function deleteInstitute(id){
     firebase.firestore().collection('test').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))
@@ -66,7 +66,7 @@ export default function InstituteDetails() {
             <TableCell>Upper Fee Range</TableCell>
             <TableCell>Fee Details</TableCell>
             <TableCell>Opening Timings</TableCell>
-            <TableCell>Normal Timings</TableCell>
+            <TableCell>Closing Timings</TableCell>
             <TableCell>Friday Timings</TableCell>
             <TableCell>Web URL</TableCell>
             <TableCell>Curriculum</TableCell>
@@ -92,18 +92,15 @@ export default function InstituteDetails() {
  <TableCell>{row.data.upperfeerange}</TableCell>
  <TableCell>{row.data.feedetails}</TableCell>
  <TableCell>{row.data.openingtiming}</TableCell>
- <TableCell>{row.data.normaltiming}</TableCell>
+ <TableCell>{row.data.closingtiming}</TableCell>
  <TableCell>{row.data.fridaytiming}</TableCell>
  <TableCell>{row.data.webUrl}</TableCell>
  <TableCell>{row.data.curriculum}</TableCell>
  <TableCell> 
      <Button  color="secondary" onClick={()=> {deleteInstitute(row.id)}} >Delete</Button> 
-     <LinkContainer to={`/UpdateInstitute/${row.id}`}>
-     <Button className='btn-sm' color= "primary">
-                        Update
-                      </Button>
-                    </LinkContainer> 
-
+     <Link to={`/UpdateInstitute/${row.id}`}>
+                      Update
+                    </Link> 
  </TableCell>
 
 

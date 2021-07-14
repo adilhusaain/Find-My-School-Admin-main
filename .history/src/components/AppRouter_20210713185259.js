@@ -54,7 +54,7 @@ function AppRouter(props) {
            <Route path="/requestsdetails">
              <RequestDetails />
            </Route>
-           <Route path="/UpdateInstitute/:id" component={UpdateInstitute}>
+           <Route path="/InstituteDetails/:id"  component={UpdateInstitute}>
              
            </Route>
 

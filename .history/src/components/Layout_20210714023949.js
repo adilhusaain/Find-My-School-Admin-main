@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => {
   return {
     page: {
       padding: theme.spacing(3),
-      maxHeight: `calc(100% - ${drawerWidth}px)`,
     },
     root: {
       display: 'flex',

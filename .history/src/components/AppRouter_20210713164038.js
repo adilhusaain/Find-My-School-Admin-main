@@ -9,7 +9,6 @@ import PushNotification from "../pages/PushNotification"
 import InstituteDetails from "../pages/InstituteDetails"
 import InstituteRequests from "../pages/InstituteRequests"
 import RequestDetails from "../pages/RequestDetails"
-import UpdateInstitute from '../pages/UpdateInstitute';
 
 
 
@@ -54,8 +53,8 @@ function AppRouter(props) {
            <Route path="/requestsdetails">
              <RequestDetails />
            </Route>
-           <Route path="/UpdateInstitute/:id" component={UpdateInstitute}>
-             
+           <Route path="/updateinstitute">
+             <UpdateInstitute />
            </Route>
 
          </Switch>

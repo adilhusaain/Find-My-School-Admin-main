@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Button, MenuItem } from "@material-ui/core";
@@ -8,9 +8,11 @@ import firebase from "firebase";
 import "firebase/firestore";
 import { cities } from "../components/CitiesOfPakistan";
 import "firebase/storage";
-import { Add, Photo } from "@material-ui/icons";
+import { Photo } from "@material-ui/icons";
 import { LinkContainer } from 'react-router-bootstrap'
 import * as Yup from "yup";
+import SaveIcon from '@material-ui/icons/Save';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddAdmin() {
+export default function UpdateInstitute({match}) {
   const classes = useStyles();
-
+  const id = String(match.params.id).toString()
   const [file, setFile] = useState(null);
-  const [file2, setFile2] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [listings , setListings] = useState("")
 
   function handleChange(e) {
     setFile(e.target.files[0]);
@@ -32,21 +34,12 @@ export default function AddAdmin() {
     console.log(file);
   }
 
-  function handleChange2(e) {
-    setFile2(e.target.files[0]);
-    console.log("hello");
-    console.log(file2);
-  }
-
   async function handleUpload(values) {
     if (file == null) {
       alert("Please Select an Image");
       return;
-    } else  if (file2 == null) {
-      alert("Please Select an Image2");
-      return;
     }
-    
+
     const uploadTask = await firebase
       .storage()
       .ref(`/images/${file.name}`)
@@ -58,39 +51,20 @@ export default function AddAdmin() {
       .child(file.name)
       .getDownloadURL();
     values.image = urr;
-    //
-    const uploadTask2 = await firebase
-      .storage()
-      .ref(`/images/${file2.name}`)
-      .put(file2);
-
-    const urrr = await firebase
-      .storage()
-      .ref("images")
-      .child(file2.name)
-      .getDownloadURL();
-    values.image = urrr;
-    //
 
     Register(values);
   }
 
- 
-
   async function Register(value) {
-
+    
     setLoading(true);
-    await firebase.firestore().collection("test").add(value);
+    await firebase.firestore().collection("test").doc(id).update(value);
     alert("Done!");
   }
   // Create a reference to the hidden file input element
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
     hiddenFileInput.current.click();
-  };
-  const hiddenFileInput2 = React.useRef(null);
-  const handleClick2 = (event) => {
-    hiddenFileInput2.current.click();
   };
 
   function validateName(value) {
@@ -103,6 +77,18 @@ export default function AddAdmin() {
     }
     return error;
   }
+  async function loadData(){
+      const userRef = firebase.firestore().collection('test').doc(id).get().then((snapshot)=>{
+          console.log(snapshot.data())
+          setListings({data:snapshot.data()})
+
+          
+      })
+      console.log(userRef.data)  
+  }
+  useEffect(()=>{
+loadData();
+  },[])
   function validateEmail(value) {
     let error;
     if (!value) {
@@ -158,32 +144,31 @@ export default function AddAdmin() {
 
   });
   return (
-    <Formik
+      <>{listings && <Formik
       initialValues={{
-        name: "",
-        category: "",
-        rating: "",
-        city: "",
-        province: "",
-        sector: "",
-        address: "",
-        contactnumber: "",
-        location: "",
-        image: "",
-        bg: "",
-        lowerfeerange: "",
-        upperfeerange: "",
-        feedetails: "",
-        openingtiming: "",
-        normaltiming: "",
-        fridaytiming: "",
-        webUrl: "",
-        curriculum: "",
+        name: listings.data?.name ,
+        category: listings.data?.category,
+        rating: listings.data?.rating,
+        city: listings.data?.city,
+        province: listings.data?.province,
+        sector: listings.data?.sector,
+        address: listings.data?.address,
+        contactnumber: listings.data?.contactnumber,
+        location: listings.data?.location,
+        image: listings.data?.image,
+        bg: listings.data?.bg,
+        lowerfeerange: listings.data?.lowerfeerange ,
+        upperfeerange: listings.data?.upperfeerange,
+        feedetails: listings.data?.feedetails,
+        openingtiming: listings.data?.openingtiming,
+        normaltiming: listings.data?.normaltiming,
+        fridaytiming: listings.data?.fridaytiming,
+        webUrl: listings.data?.webUrl,
+        curriculum: listings.data?.curriculum,
       }}
       validationSchema={DisplayingErrorMessagesSchema}
       onSubmit={(values) => {
-        handleUpload(values);
-        
+        Register(values)
       }}
     >
       {({ errors, touched }) => (
@@ -198,6 +183,7 @@ export default function AddAdmin() {
                 disabled={false}
                 fullWidth
                 name="name"
+                
               />
             </Grid>
             <Grid item xs={1}></Grid>
@@ -218,6 +204,7 @@ export default function AddAdmin() {
                 <MenuItem value="Matriculation">Matriculation</MenuItem>
                 <MenuItem value="O/A Levels">O/A Levels</MenuItem>
                 <MenuItem value="Islamic">Islamic</MenuItem>
+                <MenuItem value="Primary">Primary</MenuItem>
                 <MenuItem value="Matriculation & O/A Levels">
                   Matriculation & O/A Levels
                 </MenuItem>
@@ -319,7 +306,7 @@ export default function AddAdmin() {
               >
                 <MenuItem value="Public">Public</MenuItem>
                 <MenuItem value="Private">Private</MenuItem>
-                <MenuItem value="Semi-Government">Semi-Government</MenuItem>
+                <MenuItem value="Private">Semi-Government</MenuItem>
               </Field>
             </Grid>
 
@@ -361,7 +348,8 @@ export default function AddAdmin() {
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
               <Button
-                onClick={handleClick2}
+                onClick={handleClick}
+                
 
                 variant="contained"
                 color="inherit"
@@ -372,11 +360,11 @@ export default function AddAdmin() {
                 <input
                   type="file"
                   accept="image/*"
-                  ref={hiddenFileInput2}
-                  onChange={handleChange2}
+                  ref={hiddenFileInput}
+                  onChange={handleChange}
                   style={{ display: "none" }}
                 />
-              
+               
               </Button>
             </Grid>
             <Grid item xs={1}></Grid>
@@ -398,6 +386,7 @@ export default function AddAdmin() {
                   id="contained-button-file"
                   ref={hiddenFileInput}
                   onChange={handleChange}
+
                   style={{ display: "none" }}
                 />
                 {/* <input
@@ -422,6 +411,7 @@ export default function AddAdmin() {
                 label="Lower Fee range"
                 id="select"
                 select
+                //value={listings.data?.lowerFeeRange}
                 InputLableProps={{
                   shrink: true,
                 }}
@@ -445,6 +435,7 @@ export default function AddAdmin() {
                 label="Upper Fee range"
                 id="select"
                 select
+                //value={listings.data?.upperFeeRange}
                 InputLableProps={{
                   shrink: true,
                 }}
@@ -471,6 +462,7 @@ export default function AddAdmin() {
                 fullWidth
                 name="feedetails"
                 label="Fee Details"
+                //value={listings.data?.feeDetails}
               />
             </Grid>
 
@@ -483,6 +475,7 @@ export default function AddAdmin() {
                 type="time"
                 variant="outlined"
                 fullWidth
+                //value={listings.data?.openingTiming}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -541,12 +534,14 @@ export default function AddAdmin() {
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
               <Field
+    
                 component={TextField}
                 variant="outlined"
                 disabled={false}
                 fullWidth
                 name="curriculum"
                 label="Curriculum"
+                //value={listings.data?.curriculam}
               />
             </Grid>
             <Grid item xs={1}></Grid>
@@ -557,15 +552,16 @@ export default function AddAdmin() {
                 variant="contained"
                 color="primary"
                 fullWidth
-                startIcon={<Add />}
+                startIcon={<SaveIcon />}
                 disabled={loading}
               >
-                Add institute
+                Save Changes
               </Button>
             </Grid>
           </Grid>
         </Form>
       )}
-    </Formik>
+    </Formik>}
+    </>
   );
 }

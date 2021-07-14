@@ -27,7 +27,7 @@ export default function InstituteDetails() {
 
   useEffect(() => {
      myInstitute();
-  }, []) //[inst]
+  }, [inst])
 
   async function deleteInstitute(id){
     firebase.firestore().collection('test').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))

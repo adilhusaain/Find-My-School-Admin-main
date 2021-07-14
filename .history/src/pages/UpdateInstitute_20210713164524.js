@@ -13,17 +13,17 @@ import { LinkContainer } from 'react-router-bootstrap'
 import * as Yup from "yup";
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1),
   },
 }));
 
-export default function AddAdmin() {
+export default function UpdateInstitute() {
   const classes = useStyles();
 
   const [file, setFile] = useState(null);
-  const [file2, setFile2] = useState(null);
   const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
@@ -32,21 +32,12 @@ export default function AddAdmin() {
     console.log(file);
   }
 
-  function handleChange2(e) {
-    setFile2(e.target.files[0]);
-    console.log("hello");
-    console.log(file2);
-  }
-
   async function handleUpload(values) {
     if (file == null) {
       alert("Please Select an Image");
       return;
-    } else  if (file2 == null) {
-      alert("Please Select an Image2");
-      return;
     }
-    
+
     const uploadTask = await firebase
       .storage()
       .ref(`/images/${file.name}`)
@@ -58,27 +49,12 @@ export default function AddAdmin() {
       .child(file.name)
       .getDownloadURL();
     values.image = urr;
-    //
-    const uploadTask2 = await firebase
-      .storage()
-      .ref(`/images/${file2.name}`)
-      .put(file2);
-
-    const urrr = await firebase
-      .storage()
-      .ref("images")
-      .child(file2.name)
-      .getDownloadURL();
-    values.image = urrr;
-    //
 
     Register(values);
   }
 
- 
-
   async function Register(value) {
-
+    
     setLoading(true);
     await firebase.firestore().collection("test").add(value);
     alert("Done!");
@@ -87,10 +63,6 @@ export default function AddAdmin() {
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
     hiddenFileInput.current.click();
-  };
-  const hiddenFileInput2 = React.useRef(null);
-  const handleClick2 = (event) => {
-    hiddenFileInput2.current.click();
   };
 
   function validateName(value) {
@@ -122,12 +94,12 @@ export default function AddAdmin() {
   }
 
   const DisplayingErrorMessagesSchema = Yup.object().shape({
-    name: Yup.string()
+    instituteName: Yup.string()
       .min(10, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
 
-    curriculum: Yup.string()
+    curriculam: Yup.string()
       .min(150, "Should be Greater then 150 Characters")
       .required("Required"),
 
@@ -136,9 +108,9 @@ export default function AddAdmin() {
       .max(70, "Too Long!")
       .required("Required"),
 
-    contactnumber: Yup.string()
+    contact: Yup.string()
       .min(10, "Phone Number should be 11 character Long")
-      .max(11, "Phone Number contains more characters")
+      .max(10, "Phone Number contains more characters")
       .required("Required"),
 
     webUrl: Yup.string()
@@ -160,30 +132,29 @@ export default function AddAdmin() {
   return (
     <Formik
       initialValues={{
-        name: "",
-        category: "",
+        instituteName: "",
+        catagory: "",
         rating: "",
         city: "",
         province: "",
         sector: "",
         address: "",
-        contactnumber: "",
+        contact: "",
         location: "",
         image: "",
         bg: "",
-        lowerfeerange: "",
-        upperfeerange: "",
-        feedetails: "",
-        openingtiming: "",
-        normaltiming: "",
-        fridaytiming: "",
+        lowerFeeRange: "",
+        upperFeeRange: "",
+        feeDetails: "",
+        openingTiming: "",
+        closingTiming: "",
+        fridayTiming: "",
         webUrl: "",
-        curriculum: "",
+        curriculam: "",
       }}
       validationSchema={DisplayingErrorMessagesSchema}
       onSubmit={(values) => {
         handleUpload(values);
-        
       }}
     >
       {({ errors, touched }) => (
@@ -194,10 +165,10 @@ export default function AddAdmin() {
               <Field
                 component={TextField}
                 variant="outlined"
-                label="Name"
+                label="Institute Name"
                 disabled={false}
                 fullWidth
-                name="name"
+                name="instituteName"
               />
             </Grid>
             <Grid item xs={1}></Grid>
@@ -208,8 +179,8 @@ export default function AddAdmin() {
                 id="select"
                 disabled={false}
                 fullWidth
-                label="Category"
-                name="category"
+                label="Catagory"
+                name="catagory"
                 select
                 InputLableProps={{
                   shrink: true,
@@ -218,6 +189,7 @@ export default function AddAdmin() {
                 <MenuItem value="Matriculation">Matriculation</MenuItem>
                 <MenuItem value="O/A Levels">O/A Levels</MenuItem>
                 <MenuItem value="Islamic">Islamic</MenuItem>
+                <MenuItem value="Primary">Primary</MenuItem>
                 <MenuItem value="Matriculation & O/A Levels">
                   Matriculation & O/A Levels
                 </MenuItem>
@@ -319,7 +291,7 @@ export default function AddAdmin() {
               >
                 <MenuItem value="Public">Public</MenuItem>
                 <MenuItem value="Private">Private</MenuItem>
-                <MenuItem value="Semi-Government">Semi-Government</MenuItem>
+                <MenuItem value="Private">Semi-Government</MenuItem>
               </Field>
             </Grid>
 
@@ -339,10 +311,10 @@ export default function AddAdmin() {
               <Field
                 component={TextField}
                 variant="outlined"
-                label="Contact Number"
+                label="Contact"
                 disabled={false}
                 fullWidth
-                name="contactnumber"
+                name="contact"
                 type = "number"
               />
             </Grid>
@@ -361,7 +333,8 @@ export default function AddAdmin() {
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
               <Button
-                onClick={handleClick2}
+                onClick={handleClick}
+                
 
                 variant="contained"
                 color="inherit"
@@ -372,11 +345,11 @@ export default function AddAdmin() {
                 <input
                   type="file"
                   accept="image/*"
-                  ref={hiddenFileInput2}
-                  onChange={handleChange2}
+                  ref={hiddenFileInput}
+                  onChange={handleChange}
                   style={{ display: "none" }}
                 />
-              
+               
               </Button>
             </Grid>
             <Grid item xs={1}></Grid>
@@ -418,7 +391,7 @@ export default function AddAdmin() {
                 variant="outlined"
                 disabled={false}
                 fullWidth
-                name="lowerfeerange"
+                name="lowerFeeRange"
                 label="Lower Fee range"
                 id="select"
                 select
@@ -441,7 +414,7 @@ export default function AddAdmin() {
                 variant="outlined"
                 disabled={false}
                 fullWidth
-                name="upperfeerange"
+                name="upperFeeRange"
                 label="Upper Fee range"
                 id="select"
                 select
@@ -469,7 +442,7 @@ export default function AddAdmin() {
                 variant="outlined"
                 disabled={false}
                 fullWidth
-                name="feedetails"
+                name="feeDetails"
                 label="Fee Details"
               />
             </Grid>
@@ -479,7 +452,7 @@ export default function AddAdmin() {
               <Field
                 component={TextField}
                 label="Opening Timing"
-                name="openingtiming"
+                name="openingTiming"
                 type="time"
                 variant="outlined"
                 fullWidth
@@ -495,8 +468,8 @@ export default function AddAdmin() {
             <Grid item xs={3}>
               <Field
                 component={TextField}
-                name="normaltiming"
-                label="Normal Timing"
+                name="closingTiming"
+                label="Closing Timing"
                 type="time"
                 variant="outlined"
                 fullWidth
@@ -512,7 +485,7 @@ export default function AddAdmin() {
             <Grid item xs={3}>
               <Field
                 component={TextField}
-                name="fridaytiming"
+                name="fridayTiming"
                 label="Friday Timing"
                 type="time"
                 variant="outlined"
@@ -545,8 +518,8 @@ export default function AddAdmin() {
                 variant="outlined"
                 disabled={false}
                 fullWidth
-                name="curriculum"
-                label="Curriculum"
+                name="curriculam"
+                label="Curriculam"
               />
             </Grid>
             <Grid item xs={1}></Grid>
@@ -560,7 +533,7 @@ export default function AddAdmin() {
                 startIcon={<Add />}
                 disabled={loading}
               >
-                Add institute
+                Save Changes
               </Button>
             </Grid>
           </Grid>

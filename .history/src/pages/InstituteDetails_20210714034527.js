@@ -27,7 +27,7 @@ export default function InstituteDetails() {
 
   useEffect(() => {
      myInstitute();
-  }, []) //[inst]
+  }, [inst])
 
   async function deleteInstitute(id){
     firebase.firestore().collection('test').doc(id).delete().then(alert("deleted")).catch((error)=>alert(error))
@@ -98,12 +98,9 @@ export default function InstituteDetails() {
  <TableCell>{row.data.curriculum}</TableCell>
  <TableCell> 
      <Button  color="secondary" onClick={()=> {deleteInstitute(row.id)}} >Delete</Button> 
-     <LinkContainer to={`/UpdateInstitute/${row.id}`}>
-     <Button className='btn-sm' color= "primary">
-                        Update
-                      </Button>
-                    </LinkContainer> 
-
+     <Link to={`/UpdateInstitute/${row.id}`}>
+                      Update
+                    </Link> 
  </TableCell>
 
 
