@@ -8,8 +8,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import {Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper } from 'material-ui';
-import Container from '@material-ui/core/Container';
+
 
 function preventDefault(event) {
   event.preventDefault();
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   fixedHeight: {
-    width: 10,
+    width: 600,
   },
   
 }));
@@ -81,9 +80,7 @@ export default function RequestDetails() {
 
   
   return (
-    <React.Fragment>
-      <Container maxWidth="sm">
-    
+    <div className = {classes.fixedHeight}>
       <Table size="small" >
         <TableHead>
           <TableRow>
@@ -146,8 +143,6 @@ export default function RequestDetails() {
         </TableBody>}
       </Table>
      
-      
-      </Container>
-      </React.Fragment>
+      </div>
   );
 }

@@ -16,11 +16,7 @@ import * as Yup from "yup";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1),
-    
-  },
-
-  fixedHeight: {
-    height: 600,
+    height: 700
   },
 }));
 
@@ -209,7 +205,6 @@ export default function AddAdmin() {
     >
       {({ errors, touched }) => (
         <Form className={classes.form} noValidate>
-          <div className = {classes.fixedHeight}>
           <Grid container spacing={3} justify="center" alignItems="center">
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
@@ -567,8 +562,6 @@ export default function AddAdmin() {
                 variant="outlined"
                 disabled={false}
                 fullWidth
-                multiline
-                rows={4}
                 name="curriculum"
                 label="Curriculum"
               />
@@ -581,7 +574,6 @@ export default function AddAdmin() {
                 variant="contained"
                 color="primary"
                 fullWidth
-                size = "large"
                 startIcon={<Add />}
                 disabled={loading}
               >
@@ -589,7 +581,6 @@ export default function AddAdmin() {
               </Button>
             </Grid>
           </Grid>
-          </div>
         </Form>
       )}
     </Formik>

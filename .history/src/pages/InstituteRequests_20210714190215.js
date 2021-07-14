@@ -19,7 +19,7 @@ export default function InstituteRequests() {
     
      
     fixedHeight: {
-      height: 600,
+      height: 500,
     },
     
     

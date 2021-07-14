@@ -23,7 +23,7 @@ export default function AdminLog() {
     
      
       fixedHeight: {
-        height: 700,
+        height: 500,
       },
       
       

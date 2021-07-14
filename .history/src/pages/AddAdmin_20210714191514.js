@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   fixedHeight: {
-    height: 553,
+    height: 550,
   },
   
 }));

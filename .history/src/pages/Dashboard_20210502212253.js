@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         
       },
       fixedHeight: {
-        height: 300,
+        height: 240,
       },
       roo: {
         display: 'flex',

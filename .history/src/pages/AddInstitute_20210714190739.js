@@ -581,7 +581,6 @@ export default function AddAdmin() {
                 variant="contained"
                 color="primary"
                 fullWidth
-                size = "large"
                 startIcon={<Add />}
                 disabled={loading}
               >

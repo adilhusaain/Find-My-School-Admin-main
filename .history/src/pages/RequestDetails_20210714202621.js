@@ -82,7 +82,7 @@ export default function RequestDetails() {
   
   return (
     <React.Fragment>
-      <Container maxWidth="sm">
+      <Container >
     
       <Table size="small" >
         <TableHead>

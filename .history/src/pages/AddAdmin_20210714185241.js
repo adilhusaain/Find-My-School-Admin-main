@@ -16,9 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1),
   },
-  fixedHeight: {
-    height: 553,
-  },
+ 
   
 }));
 
@@ -50,7 +48,44 @@ export default function AddAdmin() {
 
   return (
    
-     
+      // <form className={classes.root} >
+      //   <Grid container spacing={3}
+      //   justify="center"
+      //   alignItems="center"
+      //   >
+         
+      //   <Grid item xs={4}></Grid>
+      //   <Grid item xs={4} >
+      //   <TextField id="outlined-basic" label="Username" variant="outlined" fullWidth required />
+      //   </Grid>
+      //     <Grid item xs={4}></Grid>
+
+      //     <Grid item xs={4}></Grid>
+      //   <Grid item xs={4}>
+      //      <TextField label="Email" variant="outlined" type="email" fullWidth required />
+      //   </Grid>
+      //   <Grid item xs={4}></Grid>
+
+      //   <Grid item xs={4}></Grid>
+      //   <Grid item xs={4}>
+      //      <TextField label="Password" variant="outlined"  type="password" fullWidth required />
+      //   </Grid>
+      //   <Grid item xs={4}></Grid>
+
+      //   <Grid item xs={4}></Grid>
+      //   <Grid item xs={4}>
+      //      <TextField label="Confirm Password" variant="outlined"  type="password" fullWidth required />
+      //   </Grid>
+      //   <Grid item xs={4}></Grid>
+
+      //   <Grid item xs={4}></Grid>
+      //   <Grid item xs={4}>
+      //   <Button variant="contained" color="primary"  fullWidth endIcon= { <Add/> }> Add </Button>
+      //   </Grid>
+      //   <Grid item xs={4}></Grid>
+
+      //   </Grid>
+      // </form>
       <Formik
        initialValues={{
         usertName: "",
@@ -64,7 +99,7 @@ export default function AddAdmin() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       
-      <div className = {classes.fixedHeight} style={{alignContent:'center', justifyContent:"center",alignItems:"center", alignSelf:"center", marginLeft:300, marginRight:-400}}>
+      <div  style={{alignContent:'center', justifyContent:"center",alignItems:"center", alignSelf:"center", marginLeft:300, marginRight:-400}}>
       
         <Form className={classes.form} noValidate>
           <Grid container spacing={2}>

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         
       },
       fixedHeight: {
-        height: 300,
+        height: 240,
       },
       roo: {
         display: 'flex',
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
     return (
         <div className={classes.roo}>
- <Container maxWidth="lg" className={classes.container}>
+ <Container maxWidth="xl" className={classes.container}>
 <Grid container spacing={4}>
        
             <Grid item xs={3} >

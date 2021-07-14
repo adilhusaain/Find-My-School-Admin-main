@@ -568,7 +568,7 @@ export default function AddAdmin() {
                 disabled={false}
                 fullWidth
                 multiline
-                rows={4}
+                rows={3}
                 name="curriculum"
                 label="Curriculum"
               />
@@ -581,7 +581,6 @@ export default function AddAdmin() {
                 variant="contained"
                 color="primary"
                 fullWidth
-                size = "large"
                 startIcon={<Add />}
                 disabled={loading}
               >
